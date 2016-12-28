@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CameraViewController" customModule="Kodius___Camera_template" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +21,85 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Pt-RL-iKa" userLabel="Background">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aJP-Ly-F09" userLabel="capturedPhotoView">
+                                <rect key="frame" x="16" y="28" width="343" height="537"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Camera Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgf-AR-lOH" userLabel="Camera Status Text">
+                                <rect key="frame" x="113" y="307" width="148" height="52"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2zg-E5-Ny0" userLabel="Camera View">
+                                <rect key="frame" x="16" y="28" width="343" height="537"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TNH-t8-kZS" userLabel="buttons">
+                                <rect key="frame" x="16" y="573" width="343" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chr-5W-rJA" userLabel="Capture/Send Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="161.5" height="75"/>
+                                        <state key="normal" title="Capture">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="captureFrame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Siy-Vr-JQv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jii-bH-Bqe" userLabel="Reset button">
+                                        <rect key="frame" x="181.5" y="0.0" width="161.5" height="75"/>
+                                        <state key="normal" title="Reset">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetFrame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O3c-ZD-jN9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="3qu-b3-QhI"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="2zg-E5-Ny0" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="2lD-7z-OCB"/>
+                            <constraint firstItem="aJP-Ly-F09" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="4X3-Q7-pNB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TNH-t8-kZS" secondAttribute="trailing" id="8eV-yh-i3e"/>
+                            <constraint firstItem="TNH-t8-kZS" firstAttribute="top" secondItem="aJP-Ly-F09" secondAttribute="bottom" constant="8" id="GHc-QU-2Qa"/>
+                            <constraint firstItem="TNH-t8-kZS" firstAttribute="top" secondItem="2zg-E5-Ny0" secondAttribute="bottom" constant="8" id="HLT-kv-tb9"/>
+                            <constraint firstItem="jgf-AR-lOH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="IzU-Ds-4sy"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5Pt-RL-iKa" secondAttribute="bottom" id="JVm-W6-DI1"/>
+                            <constraint firstItem="jgf-AR-lOH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MgY-bH-CRD"/>
+                            <constraint firstAttribute="trailing" secondItem="5Pt-RL-iKa" secondAttribute="trailing" id="MoK-sA-RZM"/>
+                            <constraint firstItem="5Pt-RL-iKa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="OwA-TQ-cuH"/>
+                            <constraint firstItem="aJP-Ly-F09" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="UG9-J7-UUx"/>
+                            <constraint firstItem="2zg-E5-Ny0" firstAttribute="height" secondItem="aJP-Ly-F09" secondAttribute="height" id="VAM-Rk-tig"/>
+                            <constraint firstItem="2zg-E5-Ny0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="f5T-Ad-V6M"/>
+                            <constraint firstItem="5Pt-RL-iKa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fux-DG-f3E"/>
+                            <constraint firstItem="2zg-E5-Ny0" firstAttribute="width" secondItem="aJP-Ly-F09" secondAttribute="width" id="gut-1Y-WSu"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TNH-t8-kZS" secondAttribute="bottom" constant="19" id="iqx-Av-shE"/>
+                            <constraint firstItem="aJP-Ly-F09" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="jyx-Cu-6n0"/>
+                            <constraint firstItem="TNH-t8-kZS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vzL-3J-Wt2"/>
+                            <constraint firstItem="2zg-E5-Ny0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="ynW-Jf-Gma"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraStatusLabel" destination="jgf-AR-lOH" id="PM3-LV-kZi"/>
+                        <outlet property="cameraView" destination="2zg-E5-Ny0" id="rgR-E6-FCU"/>
+                        <outlet property="capturePhotoView" destination="aJP-Ly-F09" id="yuu-Gx-D0e"/>
+                        <outlet property="captureSendButton" destination="chr-5W-rJA" id="FNO-nu-rBM"/>
+                        <outlet property="resetButton" destination="Jii-bH-Bqe" id="RL5-8v-LGi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
 </document>
