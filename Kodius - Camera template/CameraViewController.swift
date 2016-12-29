@@ -73,24 +73,33 @@ class CameraViewController: UIViewController, CameraDelegate {
                 self.captureSendButton.setTitle("Send", for: UIControlState())
             })
         } else if self.status == .still || self.status == .error {
-            
-            // Here we implement send method :)
-        
+            if self.capturePhotoView.image != nil {
+                loadingScreenForLogin()
+              
+                // Here we implement send method :)
+                
+                self.dismiss(animated: true, completion: nil) //  end of loading screen
+                activateCamera()
+            }
         }
     }
     
     @IBAction func resetFrame(_ sender: Any) {
         if self.status == .still || self.status == .error {
-            UIView.animate(withDuration: 0.225, animations: { () -> Void in
-                self.capturePhotoView.alpha = 0.0;
-                self.cameraStatusLabel.alpha = 0.0;
-                self.cameraView.alpha = 1.0;
-                self.captureSendButton.setTitle("Capture", for: UIControlState())
-            }, completion: { (done) -> Void in
-                self.capturePhotoView.image = nil;
-                self.status = .preview
-            })
+            activateCamera()
         }
+    }
+    
+    func activateCamera() {
+        UIView.animate(withDuration: 0.225, animations: { () -> Void in
+            self.capturePhotoView.alpha = 0.0;
+            self.cameraStatusLabel.alpha = 0.0;
+            self.cameraView.alpha = 1.0;
+            self.captureSendButton.setTitle("Capture", for: UIControlState())
+        }, completion: { (done) -> Void in
+            self.capturePhotoView.image = nil;
+            self.status = .preview
+        })
     }
     
     // MARK: Camera Delegate
@@ -114,5 +123,18 @@ class CameraViewController: UIViewController, CameraDelegate {
             self.cameraStatusLabel.alpha = 1.0
             self.cameraView.alpha = 0.0
         })
+    }
+    
+    func loadingScreenForLogin() {
+        let loading = UIAlertController(title: nil, message: "Sending...", preferredStyle: .alert)
+        
+        loading.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 5,y: 5,width: 50,height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating();
+        
+        loading.view.addSubview(loadingIndicator)
+        present(loading, animated: true, completion: nil)
     }
 }

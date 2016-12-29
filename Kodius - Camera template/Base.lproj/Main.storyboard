@@ -37,7 +37,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2zg-E5-Ny0" userLabel="Camera View">
                                 <rect key="frame" x="16" y="28" width="343" height="537"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TNH-t8-kZS" userLabel="buttons">
                                 <rect key="frame" x="16" y="573" width="343" height="75"/>
