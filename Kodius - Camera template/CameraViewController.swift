@@ -73,11 +73,11 @@ class CameraViewController: UIViewController, CameraDelegate {
                 self.captureSendButton.setTitle("Send", for: UIControlState())
             })
         } else if self.status == .still || self.status == .error {
-            if self.capturePhotoView.image != nil {
+            if let capturePhotoImage = self.capturePhotoView.image {
                 loadingScreenForLogin()
               
                 // Here we implement send method :)
-                
+
                 self.dismiss(animated: true, completion: nil) //  end of loading screen
                 activateCamera()
             }
